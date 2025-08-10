@@ -1,5 +1,2 @@
-/build/
-ESP32-Architecture-Lab/cache-test/build/
-ESP32-Architecture-Lab/cache-test/main/
-ESP32-Architecture-Lab/dual-core-test/
-ESP32-Architecture-Lab/memory-test/
+build/
+
