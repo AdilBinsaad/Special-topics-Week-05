@@ -386,9 +386,14 @@ Memory analysis complete!
 
 ### คำถามวิเคราะห์ (ง่าย)
 
-1. **Memory Types**: SRAM และ Flash Memory ใช้เก็บข้อมูลประเภทไหน?
-2. **Address Ranges**: ตัวแปรแต่ละประเภทอยู่ใน address range ไหน?
-3. **Memory Usage**: ESP32 มี memory ทั้งหมดเท่าไร และใช้ไปเท่าไร?
+1. **Memory Types**: SRAM และ Flash Memory ใช้เก็บข้อมูลประเภทไหน? = SRAM เก็บข้อมูลที่ต้องการอ่าน/เขียนเร็ว เช่น ตัวแปรในโปรแกรม, stack, heap
+Flash Memory เก็บข้อมูลถาวร เช่น โค้ดโปรแกรม, ไฟล์คอนฟิก, firmware
+2. **Address Ranges**: ตัวแปรแต่ละประเภทอยู่ใน address range ไหน? = ตัวแปรใน SRAM จะอยู่ในช่วง address ของ RAM ภายใน (เช่น 0x3FF… เป็นต้น)
+โค้ดและข้อมูลถาวรอยู่ใน Flash memory ซึ่งมีช่วง address แยกต่างหาก (เช่น 0x1000… เป็นต้น)
+3. **Memory Usage**: ESP32 มี memory ทั้งหมดเท่าไร และใช้ไปเท่าไร? = ESP32 มี SRAM ประมาณ 520 KB (รวม internal + external ถ้ามี)
+Flash memory ปกติอยู่ที่ 4MB หรือมากกว่านั้น ขึ้นกับโมดูล
+
+การใช้จริงขึ้นกับโปรแกรมและข้อมูลที่โหลดเข้าไป
 
 ---
 
@@ -930,4 +935,5 @@ void app_main() {
 - การทดลองนี้ต่อเนื่องจากสัปดาห์ที่ 4 โดยเน้นการวิเคราะห์ architecture 
 - นักศึกษาจะได้เปรียบเทียบประสบการณ์การใช้ Docker environment ระหว่างสัปดาห์
 - Container name เปลี่ยนจาก `esp32-lab4` เป็น `esp32-lab5` เพื่อความชัดเจนในการจัดการ
+
 
