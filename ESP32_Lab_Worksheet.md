@@ -179,9 +179,13 @@ ESP32-Architecture-Lab/          # โฟลเดอร์หลักของ
 ### คำถามทบทวน
 
 1. **Docker Commands**: คำสั่ง `docker-compose up -d` และ `docker-compose exec esp32-dev bash` ทำอะไร?
+   = docker-compose up -d สั่งรัน container แบบเบื้องหลัง, docker-compose exec esp32-dev bash เข้า shell ใน container นั้น
 2. **ESP-IDF Tools**: เครื่องมือไหนจาก Lab4 ที่จะใช้ในการ build โปรแกรม ESP32?
+   = ใช้ ESP-IDF กับคำสั่ง idf.py build เพื่อ build โปรแกรม ESP32
 3. **New Tools**: เครื่องมือใหม่ที่ติดตั้ง (tree, htop) ใช้ทำอะไร?
+   = tree แสดงโครงสร้างไฟล์แบบต้นไม้, htop ดูการใช้งาน CPU/หน่วยความจำแบบ realtime
 4. **Architecture Focus**: การศึกษา ESP32 architecture แตกต่างจากการทำ arithmetic ใน Lab4 อย่างไร?
+   = ศึกษา architecture คือดูโครงสร้างฮาร์ดแวร์ ESP32, ส่วน arithmetic คือเขียนโปรแกรมคำนวณบน ESP32
 
 ### ผลลัพธ์ที่คาดหวัง
 - [ ] สร้างโฟลเดอร์ ESP32-Architecture-Lab เรียบร้อย
@@ -591,8 +595,13 @@ void app_main() {
 ### คำถามวิเคราะห์
 
 1. **Cache Efficiency**: ทำไม sequential access เร็วกว่า random access?
+   = sequential access เร็วกว่าเพราะข้อมูลต่อเนื่อง ทำให้ cache และ prefetcher ทำงานได้ดี ลดการรอโหลดข้อมูลจากหน่วยความจำ
 2. **Memory Hierarchy**: ความแตกต่างระหว่าง internal SRAM และ external memory คืออะไร?
+   = internal SRAM: อยู่ในชิป, ความเร็วสูง, ขนาดเล็ก
+     external memory: ต่อภายนอก, ช้ากว่า, ขนาดใหญ่กว่า
 3. **Stride Patterns**: stride size ส่งผลต่อ performance อย่างไร?
+   = stride ขนาดเล็ก (เช่น 1) ช่วยให้ cache ทำงานดี เพราะอ่านข้อมูลต่อเนื่อง
+     stride ใหญ่ ทำให้ cache miss เพิ่มขึ้น ทำให้ performance ลดลง
 
 ---
 
@@ -836,8 +845,13 @@ void app_main() {
 ### คำถามวิเคราะห์
 
 1. **Core Specialization**: จากผลการทดลอง core ไหนเหมาะกับงานประเภทใด?
+   = Core 0 เหมาะกับงานระบบ (system tasks) เช่นจัดการ OS, driver
+     Core 1 เหมาะกับงานประมวลผลทั่วไปหรือแอปพลิเคชัน
 2. **Communication Overhead**: inter-core communication มี overhead เท่าไร?
+   = มี overhead จากการส่งข้อมูลระหว่าง cores ผ่าน shared memory หรือ queue แต่โดยทั่วไปไม่สูงมาก (ขึ้นกับปริมาณข้อมูลและความถี่ในการสื่อสาร)
 3. **Load Balancing**: การกระจายงานระหว่าง cores มีประสิทธิภาพหรือไม่?
+   = ถ้ากระจายงานดี จะเพิ่มประสิทธิภาพและลดเวลารอ
+     แต่ถ้างานไม่สมดุล cores อาจบาง core ทำงานหนัก อีก core เบา ทำให้ไม่เต็มประสิทธิภาพ
 
 ---
 
@@ -872,13 +886,14 @@ void app_main() {
 
 **คำถามเพิ่มเติม:**
 1. เปรียบเทียบประสบการณ์การใช้ Docker ในสัปดาห์นี้กับสัปดาห์ที่ 4:
-   _________________________________________________
+   ได้เรียนรู้มากขึ้นจากสัปดาห์ที่แล้ว
 
 2. สิ่งที่เรียนรู้เพิ่มเติมเกี่ยวกับ ESP32 architecture:
-   _________________________________________________
+   SP32 มี 2 คอร์ คือ Core 0 สำหรับจัดการระบบหลัก เช่น Wi-Fi และ OS ส่วน Core 1 ใช้รันแอปพลิเคชันผู้ใช้ ทำให้สามารถรันหลายงานพร้อมกันได้อย่างมีประสิทธิภาพ
 
 3. ความท้าทายที่พบในการทำ architecture analysis:
-   _________________________________________________
+   build แล้ว error
+   monitor แล้วข้อความไม่ขึ้น
 
 ---
 
@@ -915,3 +930,4 @@ void app_main() {
 - การทดลองนี้ต่อเนื่องจากสัปดาห์ที่ 4 โดยเน้นการวิเคราะห์ architecture 
 - นักศึกษาจะได้เปรียบเทียบประสบการณ์การใช้ Docker environment ระหว่างสัปดาห์
 - Container name เปลี่ยนจาก `esp32-lab4` เป็น `esp32-lab5` เพื่อความชัดเจนในการจัดการ
+
