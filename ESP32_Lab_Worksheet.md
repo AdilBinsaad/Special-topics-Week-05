@@ -367,18 +367,18 @@ Memory analysis complete!
 
 | Memory Section | Variable/Function | Address (ที่แสดงออกมา) | Memory Type |
 |----------------|-------------------|----------------------|-------------|
-| Stack | stack_var | 0x_______ | SRAM |
-| Global SRAM | sram_buffer | 0x_______ | SRAM |
-| Flash | flash_string | 0x_______ | Flash |
-| Heap | heap_ptr | 0x_______ | SRAM |
+| Stack | stack_var | 0x3ffb4550 | SRAM |
+| Global SRAM | sram_buffer | 0x3ffb16ac | SRAM |
+| Flash | flash_string | 0x3f407cfc | Flash |
+| Heap | heap_ptr | 0x3ffb526c | SRAM |
 
 **Table 2.2: Memory Usage Summary**
 
 | Memory Type | Free Size (bytes) | Total Size (bytes) |
 |-------------|-------------------|--------------------|
-| Internal SRAM | _________ | 520,192 |
-| Flash Memory | _________ | varies |
-| DMA Memory | _________ | varies |
+| Internal SRAM | 380136 | 520,192 |
+| Flash Memory | 0 | varies |
+| DMA Memory | 303088 | varies |
 
 ### คำถามวิเคราะห์ (ง่าย)
 
@@ -573,20 +573,20 @@ void app_main() {
 
 | Test Type | Memory Type | Time (μs) | Ratio vs Sequential |
 |-----------|-------------|-----------|-------------------|
-| Sequential | Internal SRAM | _______ | 1.00x |
-| Random | Internal SRAM | _______ | ____x |
-| Sequential | External Memory | _______ | ____x |
-| Random | External Memory | _______ | ____x |
+| Sequential | Internal SRAM | 6214 | 1.00x |
+| Random | Internal SRAM | 7298 | 1.17x |
+| Sequential | External Memory | 22699 | 1.08x |
+| Random | External Memory | 24563 | 3.65x |
 
 **Table 3.2: Stride Access Performance**
 
 | Stride Size | Time (μs) | Ratio vs Stride 1 |
 |-------------|-----------|------------------|
-| 1 | _______ | 1.00x |
-| 2 | _______ | ____x |
-| 4 | _______ | ____x |
-| 8 | _______ | ____x |
-| 16 | _______ | ____x |
+| 1 | 6063 | 1.00x |
+| 2 | 2975 | 0.49x |
+| 4 | 3418 | 0.56x |
+| 8 | 984 | 0.16x |
+| 16 | 447 | 0.07x |
 
 ### คำถามวิเคราะห์
 
@@ -819,19 +819,19 @@ void app_main() {
 
 | Metric | Core 0 (PRO_CPU) | Core 1 (APP_CPU) |
 |--------|-------------------|-------------------|
-| Total Iterations | _______ | _______ |
-| Average Time per Iteration (μs) | _______ | _______ |
-| Total Execution Time (ms) | _______ | _______ |
-| Task Completion Rate | _______ | _______ |
+| Total Iterations | 100 | 150 |
+| Average Time per Iteration (μs) | 75 | 9804 |
+| Total Execution Time (ms) | 5001 | 5956 |
+| Task Completion Rate | 100% | 100% |
 
 **Table 4.2: Inter-Core Communication**
 
 | Metric | Value |
 |--------|-------|
-| Messages Sent | _______ |
-| Messages Received | _______ |
-| Average Latency (μs) | _______ |
-| Queue Overflow Count | _______ |
+| Messages Sent | 100 |
+| Messages Received | 100 |
+| Average Latency (μs) | 15,000 |
+| Queue Overflow Count | 0 |
 
 ### คำถามวิเคราะห์
 
@@ -851,16 +851,16 @@ void app_main() {
 ### แบบฟอร์มส่งงาน
 
 **ข้อมูลนักศึกษา:**
-- ชื่อ: _________________________________
-- รหัสนักศึกษา: _______________________
-- วันที่ทำการทดลอง: ___________________
+- ชื่อ: นายอาดิ๊ล บินสอั๊ด
+- รหัสนักศึกษา: 66030301
+- วันที่ทำการทดลอง: 10/08/2568
 
 **Checklist การทดลอง:**
-- [ ] Environment setup สำเร็จ (ต่อเนื่องจากสัปดาห์ที่ 4)
-- [ ] Memory architecture analysis เสร็จสมบูรณ์
-- [ ] Cache performance testing เสร็จสมบูรณ์
-- [ ] Dual-core analysis เสร็จสมบูรณ์
-- [ ] รายงานผลการทดลองครบถ้วน
+- [ / ] Environment setup สำเร็จ (ต่อเนื่องจากสัปดาห์ที่ 4)
+- [ / ] Memory architecture analysis เสร็จสมบูรณ์
+- [ / ] Cache performance testing เสร็จสมบูรณ์
+- [ / ] Dual-core analysis เสร็จสมบูรณ์
+- [ / ] รายงานผลการทดลองครบถ้วน
 
 **คะแนนประเมิน:**
 - การเตรียม Environment และ Continuity (15 คะแนน): _______
