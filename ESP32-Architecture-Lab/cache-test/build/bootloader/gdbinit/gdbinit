@@ -1,2 +1,0 @@
-source /project/cache-test/build/bootloader/gdbinit/symbols
-source /project/cache-test/build/bootloader/gdbinit/connect
